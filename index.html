@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кинотеатр "Сфера"</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Главная страница: список сеансов -->
+    <div id="main-page" class="page active">
+        <header>
+            <h1>🎬 Кинотеатр "Сфера"</h1>
+            <button id="reset-purchased-btn" class="dev-btn">Сбросить купленные места</button>
+        </header>
+
+        <!-- Фильтры -->
+        <div class="filters">
+            <input type="text" id="filter-title" placeholder="Поиск по названию...">
+
+            <select id="filter-date">
+                <option value="">Все даты</option>
+            </select>
+
+            <select id="filter-genre">
+                <option value="">Все жанры</option>
+            </select>
+
+            <div class="price-filter">
+                <label>Цена: от <span id="price-min-label">0</span> до <span id="price-max-label">1000</span> ₽</label>
+                <input type="range" id="filter-price-min" min="0" max="1000" value="0">
+                <input type="range" id="filter-price-max" min="0" max="1000" value="1000">
+            </div>
+        </div>
+
+        <!-- Список сеансов -->
+        <div id="sessions-list" class="sessions-grid"></div>
+    </div>
+
+    <!-- Страница сеанса: интерактивный зал -->
+    <div id="session-page" class="page">
+        <header>
+            <button id="back-btn" class="back-btn">← Назад</button>
+            <h2 id="session-title"></h2>
+        </header>
+
+        <div class="session-container">
+            <!-- Информация о сеансе -->
+            <div class="session-info">
+                <img id="session-poster" src="" alt="Постер">
+                <div id="session-details"></div>
+            </div>
+
+            <!-- Фильтр по категориям билетов -->
+            <div class="seat-category-filter">
+                <label><input type="checkbox" class="category-filter" value="economy" checked> Эконом</label>
+                <label><input type="checkbox" class="category-filter" value="standard" checked> Стандарт</label>
+                <label><input type="checkbox" class="category-filter" value="premium" checked> Премиум</label>
+            </div>
+
+            <!-- Экран -->
+            <div class="screen">ЭКРАН</div>
+
+            <!-- Зал с креслами -->
+            <div id="cinema-hall" class="cinema-hall"></div>
+
+            <!-- Легенда -->
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="seat economy available"></div>
+                    <span>Эконом (доступно)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="seat standard available"></div>
+                    <span>Стандарт (доступно)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="seat premium available"></div>
+                    <span>Премиум (доступно)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="seat selected"></div>
+                    <span>Выбрано</span>
+                </div>
+                <div class="legend-item">
+                    <div class="seat reserved"></div>
+                    <span>Забронировано</span>
+                </div>
+                <div class="legend-item">
+                    <div class="seat purchased"></div>
+                    <span>Куплено</span>
+                </div>
+            </div>
+
+            <!-- Панель заказа -->
+            <div class="order-panel">
+                <div class="order-info">
+                    <span>Выбрано мест: <strong id="selected-count">0</strong></span>
+                    <span>Итого: <strong id="total-price">0</strong> ₽</span>
+                </div>
+                <button id="book-btn" class="book-btn" disabled>Забронировать</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно оплаты -->
+    <div id="payment-modal" class="modal">
+        <div class="modal-content">
+            <h2>Оплата билетов</h2>
+
+            <div class="timer-container">
+                <span>До снятия брони: </span>
+                <span id="timer" class="timer">3:00</span>
+            </div>
+
+            <div class="payment-details">
+                <p>Выбранные места: <span id="payment-seats"></span></p>
+                <p>Сумма к оплате: <strong id="payment-total"></strong> ₽</p>
+            </div>
+
+            <div class="payment-buttons">
+                <button id="pay-btn" class="pay-btn">Оплатить</button>
+                <button id="cancel-payment-btn" class="cancel-btn">Отмена</button>
+            </div>
+
+            <div id="payment-success" class="payment-success hidden">
+                <h3>✓ Оплачено</h3>
+                <p>Ваши билеты успешно куплены!</p>
+                <button id="close-success-btn" class="close-btn">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+    <!-- Скрипты приложения -->
+    <script src="firebase-config.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
