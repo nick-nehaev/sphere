@@ -3,12 +3,13 @@
 // https://console.firebase.google.com/
 
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT_ID.appspot.com",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyBKBsGkKsiy0DWYG8vupn2DjKiWELlbM3Y",
+  authDomain: "sphere-33177.firebaseapp.com",
+  projectId: "sphere-33177",
+  storageBucket: "sphere-33177.firebasestorage.app",
+  messagingSenderId: "1016062837244",
+  appId: "1:1016062837244:web:e5a928c6ba78253ebc7279",
+  measurementId: "G-MZSFD5R8QB"
 };
 
 // Инициализация Firebase
